@@ -1,11 +1,9 @@
-command_time_min_seconds=
-
-function _command_time_preexec {
+_command_time_preexec() {
   timer=${timer:-$SECONDS}
   export ZSH_COMMAND_TIME=""
 }
 
-function _command_time_precmd {
+_command_time_precmd() {
   if [ $timer ]; then
     timer_show=$(($SECONDS - $timer))
     if [ -n "$TTY" ] && [ $timer_show -ge ${ZSH_COMMAND_TIME_MIN_SECONDS:-3} ]; then
@@ -18,7 +16,7 @@ function _command_time_precmd {
   fi
 }
 
-zsh_command_time(){
+zsh_command_time() {
   if [ -n "$ZSH_COMMAND_TIME" ]; then
     echo "time: $ZSH_COMMAND_TIME"
   fi
