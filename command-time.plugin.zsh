@@ -8,7 +8,7 @@ _command_time_precmd() {
     timer_show=$(($SECONDS - $timer))
     if [ -n "$TTY" ] && [ $timer_show -ge ${ZSH_COMMAND_TIME_MIN_SECONDS:-3} ]; then
       export ZSH_COMMAND_TIME="$timer_show"
-      if [ -n ${ZSH_COMMAND_TIME_ECHO+1} ]; then
+      if [ -n ${ZSH_COMMAND_TIME_ECHO+1} ] && [ -n "$ZSH_COMMAND_TIME_ECHO" ]; then
         zsh_command_time
       fi
     fi
