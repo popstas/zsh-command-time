@@ -2,6 +2,16 @@
 
 Plugin that output `time: xx` after long commands and export `ZSH_COMMAND_TIME` variable for usage in your scripts.
 
+It similar builin feature [REPORTTIME](http://zsh.sourceforge.net/Doc/Release/Parameters.html), but it outputs only
+if user + system time >= `REPORTTIME` in config. For example:
+```
+$ time sleep 3
+sleep 3  0,00s user 0,00s system 0% cpu 3,008 total
+```
+Sleep don't consume any cpu time and `REPORTTIME` "don't see" such idle commands.
+
+If you need to monitor only cpu-angry commands, use `REPORTTIME` instead this plugin.
+
 
 ## Install with antigen
 ```
