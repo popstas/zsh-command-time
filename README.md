@@ -41,20 +41,27 @@ ZSH_COMMAND_TIME_ECHO=1
 
 
 ## Usage with [powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme
+You should not want to use this plugin with powerlevel9k.
+Sinse powerlevel9k v0.6.0 theme have native segment 
+[command_execution_time](https://github.com/bhilburn/powerlevel9k#command_execution_time)
+(see [PR](https://github.com/bhilburn/powerlevel9k/pull/402)), so you can just add it to your prompt:
+```
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs vcs command_execution_time time)
+```
 
-Add custom element in `.zshrc`:
+If you still want to use it with powerlevel9k, add custom element in `.zshrc`:
 ```
 POWERLEVEL9K_CUSTOM_COMMAND_TIME="zsh_command_time"
 POWERLEVEL9K_CUSTOM_COMMAND_TIME_BACKGROUND="253" # white
 POWERLEVEL9K_CUSTOM_COMMAND_TIME_FOREGROUND="000" # black
 ```
 
-Add element `custom_command_time` to your prompt:
+And add element `custom_command_time` to your prompt:
 ```
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs vcs custom_command_time time)
 ```
 
 
 ## Provision with ansible
-Plugin `command-time` included in ansible role [viasite-ansible/ansible-role-zsh](https://github.com/viasite-ansible/ansible-role-zsh)
-with other useful plugins.
+~~Plugin `command-time` included in ansible role [viasite-ansible/ansible-role-zsh](https://github.com/viasite-ansible/ansible-role-zsh)
+with other useful plugins.~~ Plugin excluded from viasite-ansible.zsh, but you can still check role.
