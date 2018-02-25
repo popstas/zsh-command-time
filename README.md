@@ -35,7 +35,7 @@ You can override defaults in `.zshrc`:
 # If command execution time above min. time, plugins will not output time.
 ZSH_COMMAND_TIME_MIN_SECONDS=3
 
-# Message to display (set it to "" for disable).
+# Message to display (set to "" for disable).
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ```
 
