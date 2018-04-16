@@ -6,9 +6,8 @@ _command_time_preexec() {
 
 _command_time_precmd() {
   if [ $timer ]; then
-    secs=$(($SECONDS - $timer))
-    if [ -n "$TTY" ] && [ $secs -ge ${ZSH_COMMAND_TIME_MIN_SECONDS:-3} ]; then
-      timer_show=$(printf '%dh:%02dm:%02ds\n' $(($secs/3600)) $(($secs%3600/60)) $(($secs%60)))
+    timer_show=$(($SECONDS - $timer))
+    if [ -n "$TTY" ] && [ $timer_show -ge ${ZSH_COMMAND_TIME_MIN_SECONDS:-3} ]; then
       export ZSH_COMMAND_TIME="$timer_show"
       if [ ! -z ${ZSH_COMMAND_TIME_MSG} ]; then
         zsh_command_time
@@ -20,7 +19,8 @@ _command_time_precmd() {
 
 zsh_command_time() {
   if [ -n "$ZSH_COMMAND_TIME" ]; then
-    printf "${ZSH_COMMAND_TIME_MSG}\n" "$ZSH_COMMAND_TIME"
+    timer_show=$(printf '%dh:%02dm:%02ds\n' $(($ZSH_COMMAND_TIME/3600)) $(($ZSH_COMMAND_TIME%3600/60)) $(($ZSH_COMMAND_TIME%60)))
+    printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
   fi
 }
 
