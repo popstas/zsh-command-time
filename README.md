@@ -4,7 +4,7 @@ Plugin that output `time: xx` after long commands and export `ZSH_COMMAND_TIME` 
 
 It similar builin feature [REPORTTIME](http://zsh.sourceforge.net/Doc/Release/Parameters.html), but it outputs only
 if user + system time >= `REPORTTIME` in config. For example:
-```
+```bash
 $ time sleep 3
 sleep 3  0,00s user 0,00s system 0% cpu 3,008 total
 ```
@@ -14,12 +14,12 @@ If you need to monitor only cpu-angry commands, use `REPORTTIME` instead this pl
 
 
 ## Install with antigen
-```
+```bash
 antigen bundle popstas/zsh-command-time
 ```
 
 ## Install with zplug
-```
+```bash
 zplug "popstas/zsh-command-time"
 ```
 
@@ -27,7 +27,7 @@ zplug "popstas/zsh-command-time"
 ## Install for oh-my-zsh
 
 Download:
-```
+```bash
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
 ```
 And add `command-time` to `plugins` in `.zshrc`.
@@ -36,7 +36,7 @@ And add `command-time` to `plugins` in `.zshrc`.
 ## Configuration
 
 You can override defaults in `.zshrc`:
-```
+```bash
 # If command execution time above min. time, plugins will not output time.
 ZSH_COMMAND_TIME_MIN_SECONDS=3
 
@@ -47,7 +47,7 @@ ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ### Customization
 You can customize view of the plugin by redefinition of function
 `zsh_command_time`. There is an example of custom definition `zsh_command_time`:
-```
+```bash
 zsh_command_time() {
     if [ -n "$ZSH_COMMAND_TIME" ]; then
         hours=$(($ZSH_COMMAND_TIME/3600))
@@ -85,19 +85,19 @@ You should not want to use this plugin with powerlevel9k.
 Sinse powerlevel9k v0.6.0 theme have native segment 
 [command_execution_time](https://github.com/bhilburn/powerlevel9k#command_execution_time)
 (see [PR](https://github.com/bhilburn/powerlevel9k/pull/402)), so you can just add it to your prompt:
-```
+```bash
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs vcs command_execution_time time)
 ```
 
 If you still want to use it with powerlevel9k, add custom element in `.zshrc`:
-```
+```bash
 POWERLEVEL9K_CUSTOM_COMMAND_TIME="zsh_command_time"
 POWERLEVEL9K_CUSTOM_COMMAND_TIME_BACKGROUND="253" # white
 POWERLEVEL9K_CUSTOM_COMMAND_TIME_FOREGROUND="000" # black
 ```
 
 And add element `custom_command_time` to your prompt:
-```
+```bash
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs vcs custom_command_time time)
 ```
 
