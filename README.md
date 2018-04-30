@@ -42,6 +42,9 @@ ZSH_COMMAND_TIME_MIN_SECONDS=3
 
 # Message to display (set to "" for disable).
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
+
+# Message color.
+ZSH_COMMAND_TIME_COLOR="cyan"
 ```
 
 ### Customization
