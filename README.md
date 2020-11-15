@@ -45,6 +45,9 @@ ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 
 # Message color.
 ZSH_COMMAND_TIME_COLOR="cyan"
+
+# Exclude some commands
+ZSH_COMMAND_TIME_EXCLUDE=(vim mcedit)
 ```
 
 ### Customization

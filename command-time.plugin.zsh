@@ -1,4 +1,15 @@
 _command_time_preexec() {
+  # check excluded
+  if [ -n "$ZSH_COMMAND_TIME_EXCLUDE" ]; then
+    cmd="$1"
+    for exc ($ZSH_COMMAND_TIME_EXCLUDE) do;
+      if [ "$(echo $cmd | grep -c "$exc")" -gt 0 ]; then
+        # echo "command excluded: $exc"
+        return
+      fi
+    done
+  fi
+
   timer=${timer:-$SECONDS}
   ZSH_COMMAND_TIME_MSG=${ZSH_COMMAND_TIME_MSG-"Time: %s"}
   ZSH_COMMAND_TIME_COLOR=${ZSH_COMMAND_TIME_COLOR-"white"}
