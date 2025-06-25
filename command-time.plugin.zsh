@@ -10,8 +10,9 @@ _command_time_preexec() {
     done
   fi
 
+  export ZSH_COMMAND_TIME_START=$(date +%H:%M:%S)
   timer=${timer:-$SECONDS}
-  ZSH_COMMAND_TIME_MSG=${ZSH_COMMAND_TIME_MSG-"Time: %s"}
+  ZSH_COMMAND_TIME_MSG=${ZSH_COMMAND_TIME_MSG-"Start: %s, Time: %s"}
   ZSH_COMMAND_TIME_COLOR=${ZSH_COMMAND_TIME_COLOR-"white"}
   export ZSH_COMMAND_TIME=""
 }
@@ -32,7 +33,7 @@ _command_time_precmd() {
 zsh_command_time() {
   if [ -n "$ZSH_COMMAND_TIME" ]; then
     timer_show=$(printf '%dh:%02dm:%02ds\n' $(($ZSH_COMMAND_TIME/3600)) $(($ZSH_COMMAND_TIME%3600/60)) $(($ZSH_COMMAND_TIME%60)))
-    print -P "%F{$ZSH_COMMAND_TIME_COLOR}$(printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show")%f"
+    print -P "%F{$ZSH_COMMAND_TIME_COLOR}$(printf "${ZSH_COMMAND_TIME_MSG}\n" "$ZSH_COMMAND_TIME_START" "$timer_show")%f"
   fi
 }
 
